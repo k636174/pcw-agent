@@ -14,7 +14,7 @@ func main() {
 	t := time.Now()
 	hostname, _ := os.Hostname()
 	filename := hostname + ".txt"
-	out, _ := exec.Command("df", "-al").Output()
+	out, _ := exec.Command("df", "-alk").Output()
 	outlines := strings.Split(string(out), "\n")
 	l := len(outlines)
 
@@ -26,7 +26,7 @@ func main() {
 
 	for _, line := range outlines[1 : l-1] {
 		parsedLine := strings.Fields(line)
-		row := strconv.FormatInt(t.Unix(), 10) + "," + strings.Join(parsedLine, ",")
+		row := strconv.FormatInt(t.Unix(), 10) + "," + hostname + "," + strings.Join(parsedLine, ",")
 		fmt.Fprintln(file, row)
 	}
 }
