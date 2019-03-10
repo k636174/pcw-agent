@@ -46,7 +46,7 @@ func main() {
 	}
 
 	// Local Ip Address
-	out3, _ := exec.Command("sh", "-c", "ifconfig -a | grep inet | grep -v inet6 | grep -v 127.0.0.1").Output()
+	out3, _ := exec.Command("sh", "-c", "/sbin/ifconfig -a | grep inet | grep -v inet6 | grep -v 127.0.0.1").Output()
 	outlines3 := strings.Split(string(out3), "\n")
 	localip := strings.Fields(outlines3[0])
 	src_lip := localip[1]
